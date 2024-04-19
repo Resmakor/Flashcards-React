@@ -1,0 +1,72 @@
+/* App.css */
+
+.container {
+  transform: scale(2);
+  text-align: center;
+  width: 80%;
+  /* Ustawiamy szerokość kontenera na 80% szerokości ekranu */
+  margin: 0 auto;
+  /* Centrowanie kontenera na stronie */
+
+  /* Skalujemy kontener dwukrotnie większy */
+}
+
+.start-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #0056b3;
+}
+
+/* Rozszerzenie formularza */
+.registration-form,
+.login-form {
+  max-width: 400px;
+  /* Maksymalna szerokość formularza */
+  margin: 0 auto;
+  /* Centrowanie formularza na stronie */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.login-button,
+.register-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover,
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+.extended-registration {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
