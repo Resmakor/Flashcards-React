@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>{showLoginForm ? "Log in 🔑" : "Witaj w aplikacji do nauki słówek! 📙"}</h1>
+      <h1>{showLoginForm ? "Zaloguj się 🔑" : "Witaj w aplikacji do nauki słówek! 📙"}</h1>
       {showLoginForm ? (
         <LoginForm onLogin={handleLogin} switchToExtendedRegistration={switchToExtendedRegistration} />
       ) : (

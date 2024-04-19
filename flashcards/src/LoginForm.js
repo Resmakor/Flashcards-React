@@ -8,6 +8,7 @@ function LoginForm({ onLogin, switchToExtendedRegistration }) {
         nickname: '',
         password: ''
     });
+    const [error, setError] = useState(''); // Dodajemy stan do przechowywania komunikatu o błędzie
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,6 +17,12 @@ function LoginForm({ onLogin, switchToExtendedRegistration }) {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        // Sprawdzamy, czy nickname i hasło są puste
+        if (!formData.nickname || !formData.password) {
+            setError('Nickname and password are required'); // Ustawiamy komunikat o błędzie
+            return;
+        }
+        // Wywołujemy funkcję przekazaną przez props do obsługi logowania
         onLogin(formData);
     };
 
@@ -41,6 +48,8 @@ function LoginForm({ onLogin, switchToExtendedRegistration }) {
                     required
                 />
             </div>
+            {/* Wyświetlamy komunikat o błędzie, jeśli istnieje */}
+            {error && <div className="error">{error}</div>}
             <div className="form-group">
                 <span className="extended-registration" onClick={switchToExtendedRegistration}>Don't have an account?</span>
             </div>
