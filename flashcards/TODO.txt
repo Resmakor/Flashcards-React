@@ -1,0 +1,4 @@
+- logowanie sie
+- wczytywanie wlasnych fiszek
+- wylogowywanie sie
+- jakby byl czas to test
