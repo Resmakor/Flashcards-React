@@ -54,7 +54,8 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Nauka słówek 📙</h1>
+      <h1 className="title">Czas na naukę... 📚</h1>
+
       <div className="flashcard-container">
         {cards.length > 0 && (
           <div className="flashcard-wrapper">
