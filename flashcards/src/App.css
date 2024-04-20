@@ -1,72 +1,98 @@
-/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-.container {
-  transform: scale(2);
+.app {
   text-align: center;
-  width: 80%;
-  /* Ustawiamy szerokość kontenera na 80% szerokości ekranu */
-  margin: 0 auto;
-  /* Centrowanie kontenera na stronie */
-
-  /* Skalujemy kontener dwukrotnie większy */
+  margin-top: 50px;
 }
 
-.start-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.flashcard-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.start-button:hover {
-  background-color: #0056b3;
+.flashcard-wrapper {
+  position: relative;
+  width: 30vw;
+  height: 30vh;
 }
 
-/* Rozszerzenie formularza */
-.registration-form,
-.login-form {
-  max-width: 400px;
-  /* Maksymalna szerokość formularza */
-  margin: 0 auto;
-  /* Centrowanie formularza na stronie */
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-input[type="password"] {
+.flashcard {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  /* Zwiększono rozmiar czcionki w fiszce */
+  position: absolute;
+  backface-visibility: hidden;
   border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.login-button,
-.register-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+.back {
+  transform: rotateY(180deg);
+  background-color: #f0f0f0;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prev-button,
+.next-button {
   padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
+  font-size: 40px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  background-color: transparent;
+  border: none;
+  transition: color 0.3s ease;
+  color: #27d65b;
 }
 
-.login-button:hover,
-.register-button:hover {
-  background-color: #0056b3;
+.prev-button:focus,
+.next-button:focus {
+  outline: none;
 }
 
-.extended-registration {
-  cursor: pointer;
-  color: #007bff;
-  text-decoration: underline;
+.prev-button:hover,
+.next-button:hover {
+  color: #33ad5c;
+}
+
+.counter {
+  font-size: 40px;
+  color: #27d65b;
+}
+
+.flashcard-info {
+  font-size: 32px;
 }
