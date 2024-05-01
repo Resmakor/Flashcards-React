@@ -117,6 +117,7 @@ function App() {
           setExample(''); // Reset example when new cards are loaded
         } catch (error) {
           window.alert('Error parsing JSON file: ' + error.message);
+          window.location.reload();
         }
       };
       reader.readAsText(file);
