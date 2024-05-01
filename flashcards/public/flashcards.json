@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "front": "Hello 👋",
-        "back": "Cześć 👋"
+        "front": "Hello",
+        "back": "Cześć"
     },
     {
         "id": 2,
-        "front": "Goodbye 👋",
-        "back": "Do widzenia 👋"
+        "front": "Goodbye",
+        "back": "Do widzenia"
     },
     {
         "id": 3,
-        "front": "Thank you 🙏",
-        "back": "Dziękuję 🙏"
+        "front": "Thank you",
+        "back": "Dziękuję"
     }
 ]
