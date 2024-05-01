@@ -9,11 +9,16 @@ function App() {
   const [flipped, setFlipped] = useState(false);
   const [example, setExample] = useState('');
 
-  useEffect(() => {
-    fetch('/flashcards.json')
+  const fetchCards = (file) => {
+    fetch(file)
       .then((response) => response.json())
       .then((data) => setCards(data))
       .catch((error) => console.error('Error loading flashcards:', error));
+  };
+
+  useEffect(() => {
+    // Fetch flashcards.json by default
+    fetchCards('/flashcards.json');
   }, []);
 
   const handleCardClick = () => {
@@ -59,27 +64,56 @@ function App() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
       .then((response) => response.json())
       .then((data) => {
-        let exampleUsage = 'No example found';
-        for (const meaning of data[0].meanings) {
-          if (meaning.definitions && meaning.definitions.length > 0 && meaning.definitions[0].example) {
-            exampleUsage = meaning.definitions[0].example;
+        let definition = 'No definition found';
+        for (const meaning of data) {
+          if (meaning.meanings && meaning.meanings.length > 0) {
+            for (const meaningDefinition of meaning.meanings) {
+              if (meaningDefinition.definitions && meaningDefinition.definitions.length > 0 && meaningDefinition.definitions[0].definition) {
+                definition = meaningDefinition.definitions[0].definition;
+                break;
+              }
+            }
+          }
+          if (definition !== 'No definition found') {
             break;
           }
         }
-        setExample(exampleUsage);
+        setExample(definition);
       })
       .catch((error) => {
-        console.error(`Error fetching example for ${word}:`, error);
-        setExample('Error fetching example');
+        console.error(`Error fetching definition for ${word}:`, error);
+        setExample('Error fetching definition');
       });
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        try {
+          const jsonData = JSON.parse(content);
+          setCards(jsonData);
+          setCurrentCardIndex(0);
+        } catch (error) {
+          console.error('Error parsing JSON file:', error);
+        }
+      };
+      reader.readAsText(file);
+    }
   };
 
   return (
     <div className="app">
+      <label className="custom-file-input">
+        <input type="file" accept=".json" onChange={handleFileChange} />
+        <div className="file-input-button">Wybierz plik</div>
+      </label>
       <div className="title-wrapper">
         <h1 className="title">Czas na naukę... 📚</h1>
       </div>
-
+  
       <div className="flashcard-container">
         {cards.length > 0 && (
           <div className="flashcard-wrapper">
@@ -97,7 +131,7 @@ function App() {
           </div>
         )}
       </div>
-
+  
       <div className="buttons">
         <div className="button-wrapper">
           <button className="prev-button" onClick={handlePrevCard}>
@@ -111,11 +145,10 @@ function App() {
           </button>
         </div>
       </div>
-
+  
       <div className="example-wrapper">
         <button className="example-button" onClick={() => handleGetExample(cards[currentCardIndex].front)}>
-          <FontAwesomeIcon icon={faArrowRight} />
-          <span>Get example </span>
+          <span>Definicja spokrewniona</span>
         </button>
         {example && (
           <div className="example">
