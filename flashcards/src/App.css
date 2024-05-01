@@ -43,7 +43,6 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 48px;
-  /* Zwiększono rozmiar czcionki w fiszce */
   position: absolute;
   backface-visibility: hidden;
   border: 1px solid #ccc;
@@ -64,25 +63,21 @@ body {
 .button-wrapper {
   display: flex;
   justify-content: center;
-  /* Rozstawienie guzików */
   align-items: center;
 }
 
 .prev-button {
   margin-right: 150px;
-  /* Margines między przyciskiem a licznikiem */
 }
 
 .next-button {
   margin-left: 150px;
-  /* Margines między przyciskiem a licznikiem */
 }
 
 .title {
   font-size: 55px;
-  /* Zwiększenie rozmiaru tekstu */
   margin-bottom: 20px;
-  /* Dodanie odstępu od kolejnego elementu */
+
 }
 
 
