@@ -57,6 +57,7 @@ function App() {
       handlePrevCard();
     } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       handleFlipCard();
+      setExample('');
     }
   };
 
