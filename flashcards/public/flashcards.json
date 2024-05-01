@@ -1,0 +1,14 @@
+[
+    {
+        "front": "Hello",
+        "back": "Cześć"
+    },
+    {
+        "front": "Goodbye",
+        "back": "Do widzenia"
+    },
+    {
+        "front": "Thank you",
+        "back": "Dziękuję"
+    }
+]
