@@ -12,8 +12,14 @@ function App() {
   const fetchCards = (file) => {
     fetch(file)
       .then((response) => response.json())
-      .then((data) => setCards(data))
-      .catch((error) => console.error('Error loading flashcards:', error));
+      .then((data) => {
+        setCards(data);
+        setExample(''); // Reset example when new cards are loaded
+      })
+      .catch((error) => {
+        window.alert('Error loading flashcards: ' + error);
+        window.location.reload(); // Reload the page on error
+      });
   };
 
   useEffect(() => {
@@ -23,6 +29,7 @@ function App() {
 
   const handleCardClick = () => {
     setFlipped(!flipped);
+    setExample('');
   };
 
   const handleNextCard = () => {
@@ -66,23 +73,22 @@ function App() {
       .then((data) => {
         let definition = 'No definition found';
         for (const meaning of data) {
-          if (meaning.meanings && meaning.meanings.length > 0) {
-            for (const meaningDefinition of meaning.meanings) {
-              if (meaningDefinition.definitions && meaningDefinition.definitions.length > 0 && meaningDefinition.definitions[0].definition) {
-                definition = meaningDefinition.definitions[0].definition;
-                break;
-              }
-            }
-          }
-          if (definition !== 'No definition found') {
+          if (
+            meaning.meanings &&
+            meaning.meanings.length > 0 &&
+            meaning.meanings[0].definitions &&
+            meaning.meanings[0].definitions.length > 0 &&
+            meaning.meanings[0].definitions[0].definition
+          ) {
+            definition = meaning.meanings[0].definitions[0].definition;
             break;
           }
         }
         setExample(definition);
       })
       .catch((error) => {
-        console.error(`Error fetching definition for ${word}:`, error);
-        setExample('Error fetching definition');
+        window.alert('Error fetching definition for ' + word + ': ' + error);
+        setExample('');
       });
   };
 
@@ -94,10 +100,22 @@ function App() {
         const content = e.target.result;
         try {
           const jsonData = JSON.parse(content);
+          if (!Array.isArray(jsonData)) {
+            window.alert('Plik JSON powinien być listą.');
+            window.location.reload();
+          }
+          const isValid = jsonData.every(
+            (card) => card.front && card.back
+          );
+          if (!isValid) {
+            window.alert('Niepoprawny format danych. Każdy obiekt powinien mieć pola front i back.');
+            window.location.reload();
+          }
           setCards(jsonData);
           setCurrentCardIndex(0);
+          setExample(''); // Reset example when new cards are loaded
         } catch (error) {
-          console.error('Error parsing JSON file:', error);
+          window.alert('Error parsing JSON file: ' + error.message);
         }
       };
       reader.readAsText(file);
@@ -113,7 +131,7 @@ function App() {
       <div className="title-wrapper">
         <h1 className="title">Czas na naukę... 📚</h1>
       </div>
-  
+
       <div className="flashcard-container">
         {cards.length > 0 && (
           <div className="flashcard-wrapper">
@@ -131,7 +149,7 @@ function App() {
           </div>
         )}
       </div>
-  
+
       <div className="buttons">
         <div className="button-wrapper">
           <button className="prev-button" onClick={handlePrevCard}>
@@ -145,9 +163,14 @@ function App() {
           </button>
         </div>
       </div>
-  
+
       <div className="example-wrapper">
-        <button className="example-button" onClick={() => handleGetExample(cards[currentCardIndex].front)}>
+        <button
+          className="example-button"
+          onClick={() =>
+            handleGetExample(cards[currentCardIndex].front)
+          }
+        >
           <span>Definicja spokrewniona</span>
         </button>
         {example && (
