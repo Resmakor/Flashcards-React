@@ -8,7 +8,7 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [example, setExample] = useState('');
-
+  // Dalsza część kodu
   const fetchCards = (file) => {
     fetch(file)
       .then((response) => response.json())
@@ -123,6 +123,8 @@ function App() {
       reader.readAsText(file);
     }
   };
+
+
 
   return (
     <div className="app">
