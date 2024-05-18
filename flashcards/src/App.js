@@ -8,7 +8,7 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [example, setExample] = useState('');
-
+  // Dalsza część kodu
   const fetchCards = (file) => {
     fetch(file)
       .then((response) => response.json())
@@ -117,11 +117,14 @@ function App() {
           setExample(''); // Reset example when new cards are loaded
         } catch (error) {
           window.alert('Error parsing JSON file: ' + error.message);
+          window.location.reload();
         }
       };
       reader.readAsText(file);
     }
   };
+
+
 
   return (
     <div className="app">
