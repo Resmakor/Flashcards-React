@@ -1,6 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
 .app {
   text-align: center;
   margin-top: 50px;
+}
+
+.title {
+  font-size: 55px;
+  margin-bottom: 20px;
+}
+
+.custom-file-input {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  overflow: hidden;
+}
+
+.custom-file-input input[type="file"] {
+  display: none;
+}
+
+.custom-file-input .file-input-button {
+  display: inline-block;
+  background-color: #27d65b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-input .file-input-button:hover {
+  background-color: #33ad5c;
 }
 
 .flashcard-container {
@@ -68,11 +114,6 @@
   margin-left: 150px;
 }
 
-.title {
-  font-size: 55px;
-  margin-bottom: 20px;
-}
-
 .prev-button,
 .next-button {
   padding: 10px 20px;
@@ -93,8 +134,6 @@
 .next-button:hover {
   color: #33ad5c;
 }
-
-
 
 .flashcard-info {
   font-size: 32px;
@@ -121,31 +160,4 @@
 
 .example {
   margin-top: 10px;
-}
-
-
-.custom-file-input {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  overflow: hidden;
-}
-
-.custom-file-input input[type="file"] {
-  display: none;
-}
-
-.custom-file-input .file-input-button {
-  display: inline-block;
-  background-color: #27d65b;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.custom-file-input .file-input-button:hover {
-  background-color: #33ad5c;
 }

@@ -8,22 +8,20 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [example, setExample] = useState('');
-  // Dalsza część kodu
   const fetchCards = (file) => {
     fetch(file)
       .then((response) => response.json())
       .then((data) => {
         setCards(data);
-        setExample(''); // Reset example when new cards are loaded
+        setExample('');
       })
       .catch((error) => {
         window.alert('Error loading flashcards: ' + error);
-        window.location.reload(); // Reload the page on error
+        window.location.reload();
       });
   };
 
   useEffect(() => {
-    // Fetch flashcards.json by default
     fetchCards('/flashcards.json');
   }, []);
 
@@ -114,7 +112,7 @@ function App() {
           }
           setCards(jsonData);
           setCurrentCardIndex(0);
-          setExample(''); // Reset example when new cards are loaded
+          setExample('');
         } catch (error) {
           window.alert('Error parsing JSON file: ' + error.message);
           window.location.reload();
