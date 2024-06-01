@@ -8,22 +8,20 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [example, setExample] = useState('');
-  // Dalsza część kodu
   const fetchCards = (file) => {
     fetch(file)
       .then((response) => response.json())
       .then((data) => {
         setCards(data);
-        setExample(''); // Reset example when new cards are loaded
+        setExample('');
       })
       .catch((error) => {
         window.alert('Error loading flashcards: ' + error);
-        window.location.reload(); // Reload the page on error
+        window.location.reload();
       });
   };
 
   useEffect(() => {
-    // Fetch flashcards.json by default
     fetchCards('/flashcards.json');
   }, []);
 
@@ -102,19 +100,19 @@ function App() {
         try {
           const jsonData = JSON.parse(content);
           if (!Array.isArray(jsonData)) {
-            window.alert('Plik JSON powinien być listą.');
+            window.alert('The JSON file should be a list.');
             window.location.reload();
           }
           const isValid = jsonData.every(
             (card) => card.front && card.back
           );
           if (!isValid) {
-            window.alert('Niepoprawny format danych. Każdy obiekt powinien mieć pola front i back.');
+            window.alert('Incorrect data format. Each object should have front and back fields.');
             window.location.reload();
           }
           setCards(jsonData);
           setCurrentCardIndex(0);
-          setExample(''); // Reset example when new cards are loaded
+          setExample('');
         } catch (error) {
           window.alert('Error parsing JSON file: ' + error.message);
           window.location.reload();
@@ -130,10 +128,10 @@ function App() {
     <div className="app">
       <label className="custom-file-input">
         <input type="file" accept=".json" onChange={handleFileChange} />
-        <div className="file-input-button">Wybierz plik</div>
+        <div className="file-input-button">Choose JSON file</div>
       </label>
       <div className="title-wrapper">
-        <h1 className="title">Czas na naukę... 📚</h1>
+        <h1 className="title">Study time! 📚</h1>
       </div>
 
       <div className="flashcard-container">
@@ -175,7 +173,7 @@ function App() {
             handleGetExample(cards[currentCardIndex].front)
           }
         >
-          <span>Definicja spokrewniona</span>
+          <span>Related definition</span>
         </button>
         {example && (
           <div className="example">
