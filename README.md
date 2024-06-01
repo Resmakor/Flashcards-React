@@ -60,7 +60,7 @@ Click the "Related definition" button to fetch a definition for the word on the 
 ## Event Listeners
 - **handleKeyPress(event):** Listens for keyboard events to navigate and flip flashcards.
 # Styles
-The app uses CSS for basic styling, which can be found in the App.css file. The styles include layouts for the flashcard container, buttons, and other UI elements.
+The app uses CSS for basic styling, which can be found in the App.css file. The styles include layouts for the flashcard container, buttons and other UI elements.
 # External Libraries
 - **FontAwesome:** For navigation icons.
 - **Dictionary API:** To fetch definitions related to the flashcard content.
