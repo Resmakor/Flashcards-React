@@ -100,14 +100,14 @@ function App() {
         try {
           const jsonData = JSON.parse(content);
           if (!Array.isArray(jsonData)) {
-            window.alert('Plik JSON powinien być listą.');
+            window.alert('The JSON file should be a list.');
             window.location.reload();
           }
           const isValid = jsonData.every(
             (card) => card.front && card.back
           );
           if (!isValid) {
-            window.alert('Niepoprawny format danych. Każdy obiekt powinien mieć pola front i back.');
+            window.alert('Incorrect data format. Each object should have front and back fields.');
             window.location.reload();
           }
           setCards(jsonData);
@@ -128,10 +128,10 @@ function App() {
     <div className="app">
       <label className="custom-file-input">
         <input type="file" accept=".json" onChange={handleFileChange} />
-        <div className="file-input-button">Wybierz plik</div>
+        <div className="file-input-button">Choose JSON file</div>
       </label>
       <div className="title-wrapper">
-        <h1 className="title">Czas na naukę... 📚</h1>
+        <h1 className="title">Study time! 📚</h1>
       </div>
 
       <div className="flashcard-container">
@@ -173,7 +173,7 @@ function App() {
             handleGetExample(cards[currentCardIndex].front)
           }
         >
-          <span>Definicja spokrewniona</span>
+          <span>Related definition</span>
         </button>
         {example && (
           <div className="example">
