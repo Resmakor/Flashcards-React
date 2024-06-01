@@ -39,12 +39,12 @@ Prepare a JSON file with your flashcards. The JSON should be an array of objects
 ```
 Click on the "Choose JSON file" button and select your prepared JSON file.
 
-# Navigating and flipping cards
+# Navigating and Flipping Cards
 * **Next nard:** Click the right arrow button or press the right arrow key.
 * **Previous dard:** Click the left arrow button or press the left arrow key.
 * **Flip card:** Click on the flashcard or press the up or down arrow key.
 
-# Fetching definitions
+# Fetching Definitions
 Click the "Related definition" button to fetch a definition for the word on the front of the current flashcard. The definition will be displayed below the button if found.
 # Code Overview
 ## Main Components
